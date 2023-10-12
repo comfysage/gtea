@@ -27,6 +27,7 @@ usage() {
         [i]  -  init
     [clone]  -  clone
    [create]  -  create [repo]
+        [p]  -  push [branch]
         [s]  -  sync
        [cl]  -  changelog [N of commits|--since HASH]
        [ch]  -  cherry-pick
@@ -44,6 +45,7 @@ main() {
         i) __init $@ ;;
         clone) __clone $@ ;;
         create) __create $@ ;;
+        p) __push $@ ;;
         s) __sync $@ ;;
         cl) __changelog $@ ;;
         ch) __cherry $@ ;;
