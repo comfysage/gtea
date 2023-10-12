@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-create() {
+__create() {
   name=${1:-$(basename $PWD)}
   gh repo create $name --public --source=. --remote=origin --push
 }

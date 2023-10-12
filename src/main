@@ -40,11 +40,11 @@ main() {
   shift
 
   case $flag in
-        i) init $@ ;;
-        clone) clone $@ ;;
-        create) create $@ ;;
-        s) sync $@ ;;
-        cl) changelog $@ ;;
+        i) __init $@ ;;
+        clone) __clone $@ ;;
+        create) __create $@ ;;
+        s) __sync $@ ;;
+        cl) __changelog $@ ;;
         *) die "command does not exist" ;;
   esac
 }

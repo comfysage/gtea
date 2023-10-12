@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-sync() {
+__sync() {
   gh repo sync
 }
