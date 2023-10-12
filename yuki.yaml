@@ -1,0 +1,10 @@
+pkg: gtea
+url: crispybaccoon/gtea
+desc: a small git utility in bash.
+
+pack:
+  - type: bin
+    path: gtea
+
+install:
+  - make clean all
