@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+__cherry() {
+  commit=$(git log --oneline | fzf | grep -oE "^\w*")
+  [[ -z $commit ]] && exit 1
+  git cherry-pick -n $commit
+}

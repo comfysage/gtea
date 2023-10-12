@@ -29,6 +29,7 @@ usage() {
    [create]  -  create [repo]
         [s]  -  sync
        [cl]  -  changelog [N of commits|--since HASH]
+       [ch]  -  cherry-pick
 EOF
 exit 1
 }
@@ -45,6 +46,7 @@ main() {
         create) __create $@ ;;
         s) __sync $@ ;;
         cl) __changelog $@ ;;
+        ch) __cherry $@ ;;
         *) die "command does not exist" ;;
   esac
 }
