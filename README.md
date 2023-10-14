@@ -8,6 +8,7 @@ a small git utility in bash.
         [i]  -  init
     [clone]  -  clone
    [create]  -  create [repo]
+       [wt]  -  worktree [name]
         [p]  -  push [branch]
         [s]  -  sync
        [cl]  -  changelog [N of commits|--since HASH]
