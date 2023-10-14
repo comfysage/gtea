@@ -22,11 +22,17 @@ confirm() {
     fi
 }
 
+chd() {
+  [[ -z "$dir" ]] && die "no directory specified."
+  cd $dir && exec $SHELL
+}
+
 usage() {
 >&2 cat <<"EOF"
         [i]  -  init
     [clone]  -  clone
    [create]  -  create [repo]
+       [wt]  -  worktree [name]
         [p]  -  push [branch]
         [s]  -  sync
        [cl]  -  changelog [N of commits|--since HASH]
@@ -45,6 +51,7 @@ main() {
         i) __init $@ ;;
         clone) __clone $@ ;;
         create) __create $@ ;;
+        wt) __worktree $@ ;;
         p) __push $@ ;;
         s) __sync $@ ;;
         cl) __changelog $@ ;;
