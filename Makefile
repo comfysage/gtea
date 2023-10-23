@@ -1,4 +1,4 @@
-PREFIX = ${HOME}/.local
+PREFIX ?= ${HOME}/.local
 
 all: gtea
 
