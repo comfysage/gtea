@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+__commit() {
+  [[ -z "$1" ]] || [[ -z "$2" ]] || [[ -z "$3" ]] && die "not enough arguments provided."
+  _message="$1($2): $3"
+  git commit -m "$_message"
+}

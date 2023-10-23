@@ -32,6 +32,7 @@ usage() {
         [i]  -  init
     [clone]  -  clone
    [create]  -  create [repo]
+   [commit]  -  commit <type> <scope> <message>
        [wt]  -  worktree [name]
         [p]  -  push [branch]
         [s]  -  sync
@@ -51,6 +52,7 @@ main() {
         i) __init $@ ;;
         clone) __clone $@ ;;
         create) __create $@ ;;
+        commit) __commit $@ ;;
         wt) __worktree $@ ;;
         p) __push $@ ;;
         s) __sync $@ ;;
