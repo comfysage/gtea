@@ -52,7 +52,7 @@ main() {
         i) __init $@ ;;
         clone) __clone $@ ;;
         create) __create $@ ;;
-        commit) __commit $@ ;;
+        commit) __commit "$@" ;;
         wt) __worktree $@ ;;
         p) __push $@ ;;
         s) __sync $@ ;;
