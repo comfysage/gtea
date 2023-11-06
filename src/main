@@ -38,6 +38,7 @@ usage() {
         [s]  -  sync
        [cl]  -  changelog [N of commits|--since HASH]
        [ch]  -  cherry-pick
+     [hash]  -  show hash [ref|-b <branch>]
 EOF
 exit 1
 }
@@ -58,6 +59,7 @@ main() {
         s) __sync $@ ;;
         cl) __changelog $@ ;;
         ch) __cherry $@ ;;
+        hash) __hash $@ ;;
         *) die "command does not exist" ;;
   esac
 }
