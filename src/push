@@ -9,6 +9,6 @@ __push() {
   # update refs with branch name
   # $ git push -u origin branch
 
-  BRANCH=${1-$( git branch --show-current )}
-  git push -u $BRANCH
+  BRANCH=${1:-$( git branch --show-current )}
+  git push -u origin $BRANCH
 }
