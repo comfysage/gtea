@@ -34,7 +34,7 @@ usage() {
    [create]  -  create [repo]
    [commit]  -  commit <type> <scope> <message>
        [wt]  -  worktree [name]
-        [p]  -  push [branch]
+     [push]  -  push [branch]
         [s]  -  sync
        [cl]  -  changelog [N of commits|--since HASH]
        [ch]  -  cherry-pick
@@ -55,7 +55,7 @@ main() {
         create) __create $@ ;;
         commit) __commit "$@" ;;
         wt) __worktree $@ ;;
-        p) __push $@ ;;
+        push) __push $@ ;;
         s) __sync $@ ;;
         cl) __changelog $@ ;;
         ch) __cherry $@ ;;
