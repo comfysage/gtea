@@ -1,28 +1,28 @@
 #!/usr/bin/env sh
 
-__workflow_usage() {
+gtea__workflow_usage() {
 >&2 cat <<"EOF"
    [update]  -  update local feature branch to changes from [master|<branch>]
      [push]  -  push local feature branch to master
 EOF
-exit 1
+return 1
 }
 
-__workflow_main() {
-  [ "$1" ] || __workflow_usage
-  [[ -f .gtea ]] || die 'no `.gtea` workflow file found in the root directory'
+gtea__workflow_main() {
+  [ "$1" ] || gtea__workflow_usage
+  [[ -f .gtea ]] ||gtea__die 'no `.gtea` workflow file found in the root directory'
 
   flag=${1#-}
   shift
 
   case $flag in
-    update) __wf_update $@ ;;
-      push) __wf_push $@ ;;
-    *) die "command does not exist" ;;
+    update) gtea__wf_update $@ ;;
+      push) gtea__wf_push $@ ;;
+    *)gtea__die "command does not exist" ;;
   esac
 }
 
-__wf_update() {
+gtea__wf_update() {
   # stash local changes
   local_changes=false
   [[ -z "$(git diff)" ]] || local_changes=true
@@ -30,7 +30,7 @@ __wf_update() {
 
   # rebase on to master
   master="$(cat .gtea | jq '.master' | tr -d '"')"
-  [[ -z "$master" ]] && die 'no master branch defined.'
+  [[ -z "$master" ]] &&gtea__die 'no master branch defined.'
   ahead="$master"
   [[ -z "$1" ]] || ahead="$1"
   git rebase $master
@@ -39,17 +39,17 @@ __wf_update() {
   $local_changes && git stash pop -q
 }
 
-__wf_push() {
+gtea__wf_push() {
   branch="$(git branch --show-current)"
 
   # change dir to master
   master="$(cat .gtea | jq '.master' | tr -d '"')"
-  [[ -z "$master" ]] && die 'no master branch defined.'
+  [[ -z "$master" ]] &&gtea__die 'no master branch defined.'
   dir=$(git worktree list --porcelain | grep -E 'worktree ' | awk '/'"$(echo "$master" | sed 's/\//./g')"'/ {print; exit}' | cut -d ' ' -f2-)
   cd "$dir"
 
   # rebase on to local branch
-  __wf_update "$branch"
+  gtea__wf_update "$branch"
 
-  __push && popd
+  gtea__push && popd
 }

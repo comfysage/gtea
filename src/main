@@ -1,33 +1,32 @@
 #!/usr/bin/env sh
 
-msg() {
-    printf "\033[32;1m%s\033[m %s\n" "$PROMPT" "$*"
+gtea__msg() {
+    printf "\033[32;1m%s\033[m %s\n" "$PREFIX" "$*"
 }
 
-warn() {
-    >&2 printf "\033[33;1m%s \033[mwarning: %s\n" "$PROMPT" "$*"
+gtea__warn() {
+    >&2 printf "\033[33;1m%s \033[mwarning: %s\n" "$PREFIX" "$*"
 }
 
-die() {
-    >&2 printf "\033[31;1m%s \033[merror: %s\n" "$PROMPT" "$*"
-    exit 1
+gtea__die() {
+    >&2 printf "\033[31;1m%s \033[merror: %s\n" "$PREFIX" "$*"
+    return 1
 }
 
-confirm() {
-    >&2 printf "\033[33;1m%s \033[mconfirm? %s" "$PROMPT" "$CONFIRM_PROMPT"
+gtea__confirm() {
+    >&2 printf "\033[33;1m%s \033[mconfirm? %s" "$PREFIX" "$CONFIRM_PREFIX"
     read -r ans
     if [ "$ans" != y ] ; then
-        >&2 printf '%s\n' 'Exiting.'
-        exit
+        return 1
     fi
 }
 
-chd() {
-  [[ -z "$dir" ]] && die "no directory specified."
-  cd $dir && exec $SHELL
+gtea__chd() {
+  [[ -z "$dir" ]] &&gtea__die "no directory specified."
+  cd $dir
 }
 
-usage() {
+gtea__usage() {
 >&2 cat <<"EOF"
         [i]  -  init
     [clone]  -  clone
@@ -41,27 +40,27 @@ usage() {
        [ch]  -  cherry-pick
      [hash]  -  show hash [ref|-b <branch>]
 EOF
-exit 1
+return 1
 }
 
-main() {
-  [ "$1" ] || usage
+gtea() {
+  [ "$1" ] || return $(gtea__usage)
 
   flag=${1#-}
   shift
 
   case $flag in
-        i) __init $@ ;;
-        clone) __clone $@ ;;
-        create) __create $@ ;;
-        commit) __commit "$@" ;;
-        wt) __worktree $@ ;;
-        wf) __workflow_main $@ ;;
-        push) __push $@ ;;
-        s) __sync $@ ;;
-        cl) __changelog $@ ;;
-        ch) __cherry $@ ;;
-        hash) __hash $@ ;;
-        *) die "command does not exist" ;;
+        i) gtea__init $@ ;;
+        clone) gtea__clone $@ ;;
+        create) gtea__create $@ ;;
+        commit) gtea__commit "$@" ;;
+        wt) gtea__worktree $@ ;;
+        wf) gtea__workflow_main $@ ;;
+        push) gtea__push $@ ;;
+        s) gtea__sync $@ ;;
+        cl) gtea__changelog $@ ;;
+        ch) gtea__cherry $@ ;;
+        hash) gtea__hash $@ ;;
+        *) gtea__die "command does not exist" ;;
   esac
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-__sync() {
+gtea__sync() {
   gh repo sync
 }

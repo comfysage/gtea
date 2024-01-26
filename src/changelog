@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-__changelog() {
+gtea__changelog() {
   case "$1" in
     --since) HASH=${2:-"@@{1}"};;
     *) [[ -z "$1" ]] && HASH="@@{1}" || HASH="HEAD~$1";

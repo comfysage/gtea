@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-__push() {
+gtea__push() {
   #
   # -u, --set-upstream    add upstream (tracking) reference
   #

@@ -1,21 +1,21 @@
 #!/usr/bin/env sh
 
-__commit() {
-  [[ "$1" = "i" ]] && { __commit_interactive; return 0; }
-  [[ -z "$1" ]] || [[ -z "$2" ]] || [[ -z "$3" ]] && die "not enough arguments provided."
+gtea__commit() {
+  [[ "$1" = "i" ]] && { gtea__commit_interactive; return 0; }
+  [[ -z "$1" ]] || [[ -z "$2" ]] || [[ -z "$3" ]] &&gtea__die "not enough arguments provided."
   _message="$1($2): $3"
   git commit -m "$_message"
 }
 
-__commit_interactive() {
+gtea__commit_interactive() {
   _types=$(git log --oneline --pretty="%s" | grep -oE "^\w*" | sort -u)
   _type=$(echo -e "$_types" '\n' | fzf)
   [[ -z "$_type" ]] && read -p "type: " _type
-  [[ -z "$_type" ]] && die "no type specified."
+  [[ -z "$_type" ]] &&gtea__die "no type specified."
   read -p "scope: " _scope
-  [[ -z "$_scope" ]] && die "no scope specified."
+  [[ -z "$_scope" ]] &&gtea__die "no scope specified."
   read -p "msg: " _msg
-  [[ -z "$_msg" ]] && die "no msg specified."
+  [[ -z "$_msg" ]] &&gtea__die "no msg specified."
 
-  __commit "$_type" "$_scope" "$_msg"
+  gtea__commit "$_type" "$_scope" "$_msg"
 }

@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 
-__hash() {
-  [[ "$1" = "-b" ]] && { __hash_branch $2; return 0; }
-  [[ -z "$1" ]] && die "not enough arguments provided."
+gtea__hash() {
+  [[ "$1" = "-b" ]] && { gtea__hash_branch $2; return 0; }
+  [[ -z "$1" ]] &&gtea__die "not enough arguments provided."
   git rev-parse $1 | cut -c 1-7
 }
 
-__hash_branch() {
-  [[ -z "$1" ]] && die "not enough arguments provided."
+gtea__hash_branch() {
+  [[ -z "$1" ]] &&gtea__die "not enough arguments provided."
   git show-ref $1 | head -n 1 | cut -c 1-7
 }

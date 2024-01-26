@@ -5,10 +5,9 @@ all: gtea
 gtea:
 	@printf '%s\n\n' '#!/bin/sh -e' >gtea
 	@for i in src/* ; do cat $$i ; echo ; done >>gtea
-	@echo 'main "$$@"' >>gtea
 
 clean:
-	@-rm gtea
+	-rm gtea
 
 install: gtea
 	@echo installing gtea to ${PREFIX}/bin/gtea
@@ -19,4 +18,4 @@ doc: readme
 readme: gtea
 	@help=$$(./gtea 2>&1) envsubst < README.template.md > README.md
 
-.PHONY: all
+.PHONY: all clean install doc readme test
