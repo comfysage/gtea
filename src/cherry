@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-gtea__cherry() {
-  commit=$(git log --oneline | fzf | grep -oE "^\w*")
-  [[ -z $commit ]] && return 1
-  git cherry-pick -n $commit
-}

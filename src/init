@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-gtea__init() {
-  git init
-}

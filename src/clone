@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-gtea__clone() {
-  gh repo clone $@
-}
