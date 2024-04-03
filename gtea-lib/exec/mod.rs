@@ -52,5 +52,5 @@ pub fn git_stash_pop(pwd: &str) -> Result<()> {
     run_one(format!("git stash pop -q"), pwd)
 }
 pub fn git_rebase(branch: &str, pwd: &str) -> Result<()> {
-    run_one(format!("git rebase {branch}"), pwd)
+    run_one(format!("git rebase heads/{branch}"), pwd)
 }
