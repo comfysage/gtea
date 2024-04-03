@@ -27,8 +27,9 @@ fn get_commands() -> Command {
                 .subcommand(Command::new("create").about("create gtea.toml")),
         )
         .subcommand(
-            Command::new("wf")
+            Command::new("workflow")
                 .about("Manage git workflow")
+                .visible_alias("wf")
                 .subcommand_required(true)
                 .arg_required_else_help(true)
                 .subcommand(
