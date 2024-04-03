@@ -1,7 +1,16 @@
+workspace = { members = [ "gtea-lib" ] }
+
 [package]
 name = "gtea"
 version = "0.1.0"
 edition = "2021"
+readme = "README.md"
+repository = "https://github.com/comfysage/gtea"
+license = "MIT OR Apache-2.0"
+
+[[bin]]
+name = "gtea"
+path = "src/main.rs"
 
 [dependencies]
 gtea-lib = { path = "./gtea-lib" }
