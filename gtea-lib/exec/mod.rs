@@ -18,10 +18,10 @@ pub fn git_changelog(arg: &str) -> Result<()> {
 }
 
 pub fn git_show_ref(arg: &str) -> Result<()> {
-    run_one(format!("git show-ref {arg} | head -n 1 | cut -c 1-7"), &constants::CWD)
+    git_rev_parse(format!("$(git show-ref -s {arg})").as_str())
 }
 pub fn git_rev_parse(arg: &str) -> Result<()> {
-    run_one(format!("git rev-parse {arg} | cut -c 1-7"), &constants::CWD)
+    run_one(format!("git rev-parse --short {arg}"), &constants::CWD)
 }
 
 pub fn git_init() -> Result<()> {
