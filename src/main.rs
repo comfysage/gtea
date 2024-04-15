@@ -120,7 +120,7 @@ fn main() -> Result<()> {
                 (&_, _) => Err(Error::Unexpected),
             }
         }
-        Some(("wf", sub_matches)) => {
+        Some(("workflow", sub_matches)) => {
             let subcommand = sub_matches.subcommand().ok_or(make_err!())?;
             match subcommand {
                 ("update", _) => {
